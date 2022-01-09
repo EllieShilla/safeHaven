@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="regInfo">
+    <p>Name: <input type="text" th:field="*{name}"/></p>
+    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+    <p>Surname: <input type="text" th:field="*{surname}"/></p>
+    <p th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></p>
+    <p>Patronymic: <input type="text" th:field="*{patronymic}"/></p>
+    <p th:if="${#fields.hasErrors('patronymic')}" th:errors="*{patronymic}"></p>
+    <p>Date of birth: <input type="text" th:field="*{date_of_birth}"/></p>
+    <p th:if="${#fields.hasErrors('date_of_birth')}" th:errors="*{date_of_birth}"></p>
+    <p>Email: <input type="text" th:field="*{email}"/></p>
+    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+    <p>Phone: <input type="text" th:field="*{phone}"/></p>
+    <p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
+    <p>Login: <input type="text" th:field="*{username}"/></p>
+    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+    <p th:text="${info}"></p>
+    <p>Password: <input type="text" th:field="*{password}"/></p>
+    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+    <select th:field="*{city.id}" required>
+        <option value="-1"> Выберите город</option>
+        <option th:each="i : ${city}" th:value="${{i.id}}" th:text="${i.city}+': '+${i.country.country}">
+        </option>
+    </select>
+    <input type="submit" value="Регистрация"/>
+</div>
+</body>
+</html>

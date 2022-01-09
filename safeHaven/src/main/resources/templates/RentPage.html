@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/static/style/style.css" th:href="@{/style/style.css}" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+          crossorigin="anonymous">
+</head>
+<body>
+<div th:insert="/fragments/header :: header" th:id="'header'"></div>
+<form th:action="@{/rent}" th:object="${rent}" method="post">
+    <ul th:id="'RentPage'">
+        <li>
+            <label th:for="'city'" th:text="'Город:'"></label>
+            <input type="text" th:field="*{apartment.city.city}" name="'city'"
+                   th:style="'margin-left:70px;margin-bottom:10px'"/>
+        </li>
+        <li>
+            <label th:for="'persons'" th:text="'Кол-во человек:'"></label>
+            <input type="number" th:field="*{count}" name="'persons'" th:style="'margin-bottom:10px'"/>
+        </li>
+        <li>
+            <label th:for="'from'" th:text="'Дата завезда:'"></label>
+            <input type="date" id="dateTo" th:field="*{entry}" name="'from'"
+                   th:style="'margin-left:22px;margin-bottom:10px;width:190px'"/>
+        </li>
+        <li>
+            <label th:for="'to'" th:text="'Дата выезда:'"></label>
+            <input type="date" id="dateFrom" th:field="*{departure}" name="'to'"
+                   th:style="'margin-left:26px;margin-bottom:10px;width:190px'"/>
+        </li>
+        <li><label th:for="'price'" th:text="'Стоимость:'"></label>
+            <input type="number" th:field="*{price}" name="'price'" th:style="'margin-left:40px'"/>
+        </li>
+    </ul>
+    <input type="submit" value="Забронировать" th:id="'rentBtn'"/>
+    <div class="alert alert-primary" role="alert" th:text="${info}" th:if="${info}"></div>
+</form>
+<div th:insert="/fragments/footer :: footer" th:id="'footer'"></div>
+</body>
+</html>

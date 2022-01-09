@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование</title>
+    <link href="/static/style/style.css" th:href="@{/style/style.css}" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body>
+<div th:insert="/fragments/header :: header" th:id="'header'"></div>
+<div th:insert="/fragments/LandlordHeader :: LandlordHeader" th:id="divLandlordHome"></div>
+<div th:id="'tenant_home'">
+<form th:action="'/edit/'+${apartment.id}" th:object="${apartment}" method="post" enctype="multipart/form-data">
+
+    <select th:field="*{city.id}" required>
+        <option value="-1"> Выберите город</option>
+        <option th:each="i : ${city}" th:value="${{i.id}}" th:text="${i.city}+': '+${i.country.country}">
+        </option>
+    </select>
+
+    <select th:field="*{apartmentType.type}" required>
+        <option value="-1"> Выберите тип участка</option>
+        <option th:each="i : ${apartmentType}" th:value="${i.type}" th:text="${i.type}">
+        </option>
+    </select>
+    <p>Название: <input type="text" th:field="*{title}"/></p>
+    <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+    <p>Адрес: <input type="text" th:field="*{address}"/></p>
+    <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
+    <p>Время заселения: <input type="text" th:field="*{check_IN_time}"/></p>
+    <p th:if="${#fields.hasErrors('check_IN_time')}" th:errors="*{check_IN_time}"></p>
+    <p>Время выселение: <input type="text" th:field="*{check_OUT_time}"/></p>
+    <p th:if="${#fields.hasErrors('check_OUT_time')}" th:errors="*{check_OUT_time}"></p>
+    <p>Макс. кол-во человек для размещения: <input type="number" th:field="*{number_of_person}"/></p>
+    <!--    <p th:if="${#fields.hasErrors('number_of_person')}" th:errors="*{number_of_person}"></p>-->
+    <p>Цена за одну ночь: <input type="number" th:field="*{price_for_1_day}"/></p>
+    <!--    <p th:if="${#fields.hasErrors('price_for_1_day')}" th:errors="*{price_for_1_day}"></p>-->
+    <p>Информация о объекте:
+        <textarea  rows = "20" cols = "80" th:field = "*{about}">... </textarea>
+    </p>
+    <p th:if="${#fields.hasErrors('about')}" th:errors="*{about}"></p>
+    <p th:text="'При добавлении новых изображений все старые будут удалены'"></p>
+    <input type="file" multiple="multiple" name="file">
+
+    <input type="submit" value="Обновление"/>
+</form>
+<div th:insert="/fragments/footer :: footer" th:id="'footer'"></div>
+</div>
+</body>
+</html>

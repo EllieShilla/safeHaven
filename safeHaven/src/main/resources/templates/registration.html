@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Registration</title>
+    <link href="/static/style/style.css" th:href="@{/style/style.css}" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body>
+<div th:insert="/fragments/header :: header" th:id="'header'"></div>
+<div th:id="'registrationForm'">
+    <form th:action="@{/registration}" th:object="${user}" method="post">
+        <p>Name: <input type="text" th:field="*{name}" th:style="'margin-left:45px;'"/></p>
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+        <p>Surname: <input type="text" th:field="*{surname}" th:style="'margin-left:26px;'"/></p>
+        <p th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></p>
+        <p>Patronymic: <input type="text" th:field="*{patronymic}" th:style="'margin-left:11px;'"/></p>
+        <p th:if="${#fields.hasErrors('patronymic')}" th:errors="*{patronymic}"></p>
+        <p>Date of birth: <input type="text" th:field="*{date_of_birth}"/></p>
+        <p th:if="${#fields.hasErrors('date_of_birth')}" th:errors="*{date_of_birth}"></p>
+        <p>Email: <input type="text" th:field="*{email}" th:style="'margin-left:52px;'"/></p>
+        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+        <p>Phone: <input type="text" th:field="*{phone}" th:style="'margin-left:45px;'"/></p>
+        <p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
+        <p>Login: <input type="text" th:field="*{username}" th:style="'margin-left:50px;'"/></p>
+        <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+        <p th:text="${info}"></p>
+        <p>Password: <input type="text" th:field="*{password}" th:style="'margin-left:25px;'"/></p>
+        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+        <input th:each="String : ${role}"
+               th:style="${String.toString().equals('USER') || String.toString().equals('ADMIN')}?'display:none'"
+               th:value="${String}" type="radio" th:text="${String.title}"
+               th:field="*{roles}">
+
+        <br/>
+        <select th:field="*{city.id}" required th:style="'margin:10px 0px;'">
+            <option value="-1"> Выберите город</option>
+            <option th:each="i : ${city}" th:value="${{i.id}}" th:text="${i.city}+': '+${i.country.country}">
+            </option>
+        </select>
+        <br/>
+        <input type="submit" value="Регистрация" th:style="'float:right;'"/>
+    </form>
+</div>
+<!--<div th:insert="/fragments/footer :: footer" th:id="'footer'"></div>-->
+</body>
+</html>

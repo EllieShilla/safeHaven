@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/static/style/style.css" th:href="@{/style/style.css}" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body>
+<div th:insert="/fragments/header :: header" th:id="'header'"></div>
+<div th:insert="/fragments/LandlordHeader :: LandlordHeader" th:id="divLandlordHome"></div>
+<div th:id="'rentApartmentLand'">
+    <p th:text="${ratingTenants.size()>0}? 'Рейтинг арендатора: '+ ${ratingTenants.get(0).stars}"></p>
+    <form th:style="${ratingTenants.size()>0}? 'display:none' : 'display:block'"
+          th:action="@{/ratingTenant}" th:object="${ratingTenant}" method="post" th:id="'fUser'">
+        <input th:each="Integer : ${num}" th:value="${Integer}" type="radio" th:text="${Integer}"
+               th:field="*{stars}">
+        <input th:type="number" th:value="${rent.user.id}" th:name="userId" th:style="'display:none'">
+        <input type="submit" value="Оценка арендатора"/>
+    </form>
+</div>
+
+
+</body>
+</html>

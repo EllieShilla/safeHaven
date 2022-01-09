@@ -1,0 +1,187 @@
+#footer {
+    text-align: center;
+}
+
+#mainDiv {
+    margin: 5px 25%;
+}
+
+#apartmentDiv {
+    border-bottom: 1px solid rgba(148, 148, 148, 0.39);
+    line-height: 0.9em;
+    height: 230px;
+    margin-bottom: 10px;
+}
+
+.imgClass {
+    margin: 1% 2%;
+    border-radius: 20px;
+    box-shadow: 6px 5px 9px 0px rgba(21, 35, 45, 0.21);
+}
+
+#aDiv {
+    text-decoration: underline;
+    color: #000000;
+    font-size: 20px;
+    line-height: 2em;
+}
+
+#aDiv:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.firstSlideOnly {
+    width: 300px;
+    float: left;
+    margin-right:10px;
+}
+
+#searchForm {
+    text-align: center;
+    margin: 0;
+}
+
+label {
+    margin: 0 40px;
+}
+
+#footer {
+    text-align: center;
+    margin-top: 30px;
+}
+
+footer {
+    flex: 0 0 auto;
+    /*padding: 1rem;!*это свойство можно удалить, добавлено для наглядности*!*/
+    /*background: #e6ffe6;!*это свойство можно удалить, добавлено для наглядности*!*/
+}
+
+
+header {
+    height: 50px;
+    /*background:blue;*/
+    display: flex;
+    justify-content: center;
+
+}
+
+.logo {
+    /*width:50px;*/
+    height: 50px;
+    background: #baba97;
+    padding: 10px 15px;
+    color: #2e3636;
+
+}
+
+.header-menu {
+    background: #95d4d4;
+    display: flex;
+    align-items: stretch;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header-menu li {
+    cursor: pointer;
+    border-left: 1px solid #fff;
+    margin: 0;
+}
+
+.header-menu a {
+    text-decoration: none;
+    padding: 0 40px;
+    color: #2e3636;
+    line-height: 50px;
+}
+
+.header-menu li:hover {
+    background: #538d8d;
+}
+
+a {
+    text-decoration: none;
+}
+
+#divLandlordHome ul {
+    display: inline-flex;
+}
+
+#divLandlordHome ul {
+    justify-content: center;
+}
+
+#divLandlordHome li {
+    list-style-type: none;
+    padding: 3px 10px;
+
+}
+
+#allApart {
+
+}
+
+.apart {
+    background-color: #95d4d4;
+    margin: 5px 10%;
+    padding: 5px 2%;
+
+}
+
+.imgApart {
+    display: flex;
+    justify-content: center;
+    padding: 3px;
+}
+
+.workApart {
+    float: right;
+}
+
+#rating{
+    float: right;
+}
+
+body{
+    min-width: 900px;
+}
+.moreInfoPhoto{
+    margin: 3px;
+}
+.more_info{
+    margin: 5px 25%;
+}
+#rentInfo{
+    margin: 5px 25%;
+}
+#RentPage{
+    margin: 15px 30%;
+}
+#RentPage li{
+    list-style-type: none;
+}
+#rentBtn{
+    margin-left: 49%;
+}
+#authorization{
+    margin: 5% 35%;
+}
+
+#registrationForm{
+    margin: 15px 35%;
+}
+
+#tenant_home{
+    margin: 5px 25%;
+}
+#allApart{
+    margin: 5px 25%;
+}
+#rentApartmentLand{
+    margin: 5px 25%;
+}
+#LandlordHeader{
+    margin: 5px 25%;
+}

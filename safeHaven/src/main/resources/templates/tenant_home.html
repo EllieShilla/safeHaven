@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Моя страница</title>
+    <link href="/static/style/style.css" th:href="@{/style/style.css}" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body>
+<div th:insert="/fragments/header :: header" th:id="'header'"></div>
+<div th:id="'tenant_home'">
+
+
+    <h3 th:text="${futureRent.size()>0}?'Будущие поездки'"></h3>
+    <div th:each="rent : ${futureRent}">
+        <a th:target="blank_" th:href="'/moreInfo/'+${rent.apartment.id}" th:text="${rent.apartment.title}"
+           th:id="aDiv"></a>
+
+        <p th:text="'Въезд: '+${rent.entry}"></p>
+        <p th:text="'Выезд: '+${rent.departure}"></p>
+    </div>
+    <h3 th:text="${nowRent.size()>0}?'Нынешние поездки'"></h3>
+    <div th:each="rent : ${nowRent}">
+        <a th:href="'/moreInfo/'+${rent.apartment.id}" th:text="${rent.apartment.title}" th:id="aDiv"></a>
+        <p th:text="'Въезд: '+${rent.entry}"></p>
+        <p th:text="'Выезд: '+${rent.departure}"></p>
+    </div>
+    <h3 th:text="${pastRent.size()>0}?'Прошлые поездки'"></h3>
+    <div th:each="rent : ${pastRent}">
+        <a th:href="'/ratingApartment/'+${rent.apartment.id}" th:text="${rent.apartment.title}" th:id="aDiv"></a>
+        <p th:text="'Въезд: '+${rent.entry}"></p>
+        <p th:text="'Выезд: '+${rent.departure}"></p>
+
+
+        <div th:each="Rating_Landlord : ${ratingsUser}">
+            <p th:text="${Rating_Landlord.id_Landlord.id==rent.apartment.user.id}? 'Рейтинг владельца: '+ ${Rating_Landlord.stars}"
+               th:id="'pUser'"></p>
+        </div>
+        <div th:each="ratingApartment : ${ratingsApartments}">
+            <p th:text="${ratingApartment.apartment.id==rent.apartment.id}? 'Рейтинг апартаментов: '+${ratingApartment.stars}"></p>
+        </div>
+        <!--    <div>-->
+        <!--        <form th:action="@{/comment}" th:object="${comment}" method="post" th:id="searchForm">-->
+        <!--            <input type="submit" value="Добавить комментарий"/>-->
+        <!--        </form>-->
+        <!--    </div>-->
+    </div>
+
+    <!--<h3 th:text="${canRemove.size()>0}?'Отмена бронирования'"></h3>-->
+    <!--<div th:each="rent : ${canRemove}">-->
+    <!--    <a th:href="'/moreInfo/'+${rent.apartment.id}" th:text="${rent.apartment.title}" th:id="aDiv"></a>-->
+    <!--    <p th:text="${rent.entry}"></p>-->
+    <!--    <p th:text="${rent.departure}"></p>-->
+    <!--    <a th:href="'/removeRent/'+${rent.id}" th:text="'Отменить бронирование'" th:id="aDiv"></a>-->
+    <!--</div>-->
+</div>
+<div th:insert="/fragments/footer :: footer" th:id="'footer'"></div>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="info_apartment_example">
+    <p th:text="${apartment.getApartmentType().type}"></p>
+    <h2 th:text="${apartment.title}" ></h2>
+    <p th:text="'Город: '+ ${apartment.city.city}"></p>
+    <p th:text="'Адрес: '+ ${apartment.address}"></p>
+    <p th:text="'Время заселения: '+ ${apartment.check_IN_time}"></p>
+    <p th:text="'Время выселения: '+${apartment.check_OUT_time}"></p>
+    <p th:text="${apartment.about}"></p>
+    <div >
+        <img th:each="photo: ${img}" th:if="${photo.apartment.id == apartment.id}" width="300px" th:src="'../img/'+${photo.title}" alt="">
+    </div>
+</div>
+</body>
+</html>

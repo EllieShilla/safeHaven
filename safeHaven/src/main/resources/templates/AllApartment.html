@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои апартаменты</title>
+    <link href="/static/style/style.css" th:href="@{/style/style.css}" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body>
+<div th:insert="/fragments/header :: header" th:id="'header'"></div>
+<div th:insert="/fragments/LandlordHeader :: LandlordHeader" th:id="divLandlordHome"></div>
+
+<div th:each="apartment : ${apartments}" th:id="'allApart'">
+    <div th:class="apart">
+        <div th:class="workApart">
+            <p><a th:href="'/edit/'+${apartment.id}">Редиктировать</a></p>
+            <p><a th:href="'/delete/'+${apartment.id}">Удалить</a></p>
+        </div>
+        <p th:text="${apartment.getApartmentType().type}"></p>
+        <a th:href="'/moreInfo_/'+${apartment.id}" th:text="${apartment.title}" th:id="aDiv"></a>
+        <p th:each="ratingApartment:${ratingApartments}" th:if="${ratingApartment.apartmentId == apartment.id}"
+           th:text="'Рейтинг: '+${ratingApartment.rating}"></p>
+        <p th:text="'Адрес: '+ ${apartment.address}"></p>
+        <p th:text="'Время заселения: '+ ${apartment.check_IN_time}"></p>
+        <p th:text="'Время выселения: '+${apartment.check_OUT_time}"></p>
+        <p th:text="'Цена за одну ночь: '+${apartment.price_for_1_day} + ' грн'"></p>
+        <div th:class="imgApart">
+            <img th:each="photo: ${img}" th:if="${photo.apartment.id == apartment.id}" width="300px"
+                 th:src="'img/'+${photo.title}" alt="">
+        </div>
+    </div>
+</div>
+<div th:insert="/fragments/footer :: footer" th:id="'footer'"></div>
+</body>
+</html>

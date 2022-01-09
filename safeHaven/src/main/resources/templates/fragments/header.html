@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/static/style/style.css" th:href="@{/style/style.css}" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body>
+
+<header th:fragment="header">
+    <div class="logo"> <a th:href="@{/}">SafeHaven</a></div>
+    <ul class="header-menu">
+        <li>
+            <a th:href="@{/registration}">Регистрация</a>
+        </li>
+        <li th:style="${isLog==null}? 'display:block' : 'display:none'">
+            <a th:href="@{/tenant}">Арендовать жилье</a>
+        </li>
+        <li th:style="${isLog!=null || isLogLandlord!=null}? 'display:block' : 'display:none'">
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Выйти"/>
+            </form>
+        </li>
+        <li th:style="${isLogLandlord==null}? 'display:block' : 'display:none'">
+            <a th:href="@{/allApartment}">Сдать свое жилье в аренду</a>
+        </li>
+        <li th:style="${isLog==null || isLogLandlord!=null}? 'display:none' : 'display:block'">
+            <a th:href="@{/tenant}">Моя страница</a>
+        </li>
+        <li th:style="${isLogAdm!=null }? 'display:block' : 'display:none'">
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Выйти"/>
+            </form>
+        </li>
+<!--        <li>-->
+<!--            <a th:href="@{/}">Главная страница</a>-->
+<!--        </li>-->
+    </ul>
+
+</header>
+</body>
+</html>
